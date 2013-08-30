@@ -1,2 +1,2 @@
-beer-mean-crud
+Beer - mean CRUD
 ==============
