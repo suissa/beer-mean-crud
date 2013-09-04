@@ -48,7 +48,7 @@ exports.add = function(req, res) {
 	});
 
 	res.end();
-}
+};
 
 exports.viewAdd = function(req, res) {
 	res.status(200);
@@ -59,7 +59,7 @@ exports.viewAdd = function(req, res) {
 		console.log(html);
 		res.write(html);
 	});
-}
+};
 
 exports.edit = function(req, res){
 	var result = req.body;
@@ -73,7 +73,7 @@ exports.edit = function(req, res){
 	});
 
 	res.end();
-}
+};
 
 exports.remove = function(req, res) {
 	var result = req.body;
@@ -87,4 +87,9 @@ exports.remove = function(req, res) {
 	});
 
 	res.end();
-}
+};
+
+// Expose
+exports.index = function(req, res){
+	res.render('/beers/index');
+};

@@ -1,7 +1,11 @@
 doctype 5
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(data-ng-app="Beers")
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body(data-ng-view)
+        block content
+        
+        block footer
+            script(src='js/angular.min.js')
+            script(src='js/app.js')
