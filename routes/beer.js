@@ -26,7 +26,7 @@ exports.list = function(req, res){
 
 	Beer.find(function (err, beers) {
 		if(err) {
-			console.log('Deu Merda', err);
+			console.log('Houve algum erro, tente novamente', err);
 		} else {
 			res.send(beers)
 			res.end();
@@ -43,7 +43,7 @@ exports.add = function(req, res) {
 		if(err){
 			console.log(err);
 		} else {
-			console.log('Deu certo');
+			console.log('Não foi cadastrado, tente novamente');
 		}
 	});
 
@@ -68,7 +68,7 @@ exports.edit = function(req, res){
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja atualizada');
+			console.log('Breja atualizada com sucesso');
 		}
 	});
 
@@ -82,7 +82,7 @@ exports.remove = function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja Deletada');
+			console.log('Breja deletada com sucesso');
 		}
 	});
 
