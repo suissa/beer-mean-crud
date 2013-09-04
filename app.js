@@ -34,6 +34,10 @@ app.get('/beers/add', beer.viewAdd);
 app.put('/beers/edit/:id', beer.edit);
 app.delete('/beers/remove/:id', beer.remove);
 
+// render views
+app.get('/beers/', beer.index);
+app.get('/beers/create', routes.expose);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

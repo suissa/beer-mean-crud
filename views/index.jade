@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .container(data-ng-controller="IndexController")
+        h1 Beers - MEAN - CRUD
+        h2 Ações
+        ul
+            li
+                a(href="#") CREATE
+            li
+                a(href="#") RETRIEVE
+            li
+                a(href="#") UPDATE
+            li
+                a(href="#") DELETE
