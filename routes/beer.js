@@ -3,6 +3,9 @@
  * GET beers listing.
  */
 
+/**
+ * MongoDB
+ */
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/mongoose-test');
@@ -10,18 +13,14 @@ var db = mongoose.connection;
 
 var BeerSchema = new Schema({
   name: { type: String, default: '' },
+  description: { type: String },
+  style: { type: String },
+  teorAlcool: { type: [Number] },
   category: { type: String, default: ''},
+  created: { type: Date }
 });
 
 var Beer = mongoose.model('Beer', BeerSchema);
-
-var dados = {
-	name: 'Itaipava',
-	category: 'pilsen'
-}
-
-var beer = new Beer(dados);
-
 
 exports.list = function(req, res){
 
