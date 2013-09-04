@@ -8,21 +8,26 @@
  */
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/mongoose-test');
+mongoose.connect('mongodb://localhost/mybeersio');
 var db = mongoose.connection;
 
 var BeerSchema = new Schema({
   name: { type: String, default: '' },
-  description: { type: String },
-  style: { type: String },
-  teorAlcool: { type: [Number] },
+  description: { type: String, default: '' },
+  style: { type: String, default: '' },
+  teorAlcool: { type: Number, min: 0},
   category: { type: String, default: ''},
-  created: { type: Date }
+  ingredients: [{
+  	name: { type: String, default: '' },
+   	format: { type: String, default: '' },
+   	type: { type: String, default: '' },
+  }],
+  created: { type: Date, default: Date.now },
 });
 
 var Beer = mongoose.model('Beer', BeerSchema);
 
-exports.list = function(req, res){
+exports.index = function(req, res){
 
 	Beer.find(function (err, beers) {
 		if(err) {
