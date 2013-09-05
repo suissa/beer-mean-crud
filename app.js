@@ -31,7 +31,7 @@ app.get('/beers', beer.list);
 app.post('/beers/add', beer.add);
 app.get('/beers/add', beer.viewAdd);
 app.put('/beers/edit/:id', beer.edit);
-app.get('/beers/edit/:id', beer.viewEdit);
+// app.get('/beers/edit/:id', beer.viewEdit);
 app.delete('/beers/remove/:id', beer.remove);
 
 // render views

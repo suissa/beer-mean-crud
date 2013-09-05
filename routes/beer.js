@@ -94,6 +94,19 @@ exports.remove = function(req, res) {
 	res.end();
 };
 
+exports.list = function(req, res){
+
+	Beer.find(function (err, beers) {
+		if(err) {
+			console.log('Houve algum erro, tente novamente', err);
+		} else {
+			res.send(beers)
+			res.end();
+		}
+	})
+
+};
+
 // Expose
 exports.index = function(req, res){
 	res.render('/beers/index');
