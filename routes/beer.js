@@ -1,11 +1,7 @@
-
-/*
- * GET beers listing.
- */
-
 /**
  * MongoDB
  */
+
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/mybeersio');
@@ -23,6 +19,7 @@ var BeerSchema = new Schema({
    	type: { type: String, default: '' },
   }],
   created: { type: Date, default: Date.now },
+  updated: { type: Date, default: '' },
 });
 
 var Beer = mongoose.model('Beer', BeerSchema);
@@ -31,7 +28,7 @@ exports.index = function(req, res){
 
 	Beer.find(function (err, beers) {
 		if(err) {
-			console.log('Houve algum erro, tente novamente', err);
+			console.log(err);
 		} else {
 			res.send(beers)
 			res.end();
@@ -48,7 +45,7 @@ exports.add = function(req, res) {
 		if(err){
 			console.log(err);
 		} else {
-			console.log('Não foi cadastrado, tente novamente');
+			console.log('Cerveja cadastrada com sucesso');
 		}
 	});
 
@@ -73,7 +70,7 @@ exports.edit = function(req, res){
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja atualizada com sucesso');
+			console.log('Cerveja atualizada com sucesso');
 		}
 	});
 
@@ -87,7 +84,7 @@ exports.remove = function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja deletada com sucesso');
+			console.log('Cerveja deletada com sucesso!');
 		}
 	});
 

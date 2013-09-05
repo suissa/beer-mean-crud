@@ -1,11 +1,7 @@
-
-/*
- * GET beers listing.
- */
-
 /**
  * MongoDB
  */
+
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/mybeersio');
@@ -13,8 +9,13 @@ var db = mongoose.connection;
 
 var UserSchema = new Schema({
   name: { type: String, default: '' },
+  email: { type: String, default: '', unique: true },
+  hash_password: { type: String, default: '' },
+  salt: { type: String, default: '' },
+  authToken: { type: String, default: '' },
   age: { type: Number, min: 0 },
-  created: { type: Date }
+  created: { type: Date, default: Date.now },
+  updated: { type: Date, default: '' }
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -23,7 +24,7 @@ exports.list = function(req, res){
 
 	Beer.find(function (err, beers) {
 		if(err) {
-			console.log('Houve algum erro, tente novamente', err);
+			console.log(err);
 		} else {
 			res.send(beers)
 			res.end();
@@ -50,7 +51,7 @@ exports.add = function(req, res) {
 exports.viewAdd = function(req, res) {
 	res.status(200);
 	res.set('Content-Type', 'text/html');
-	res.render('form', function(err, html) {
+	res.render('/beers/create', function(err, html) {
 		if(err)
 			console.log('error', err);
 		console.log(html);
@@ -65,7 +66,7 @@ exports.edit = function(req, res){
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja atualizada com sucesso');
+			console.log('Usuário atualizado com sucesso');
 		}
 	});
 
@@ -79,14 +80,9 @@ exports.remove = function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log('Breja deletada com sucesso');
+			console.log('Usuário deletado com sucesso');
 		}
 	});
 
 	res.end();
-};
-
-// Expose
-exports.index = function(req, res){
-	res.render('/beers/index');
 };

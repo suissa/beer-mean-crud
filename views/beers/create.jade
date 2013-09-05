@@ -4,7 +4,20 @@ block content
 	h1 MyBeers.io
 	form(method="post", action="/add")
 		label 
-			| name
+			| Nome
 		input(type="text", name="name")
 		label 
-			| categoria
+			| Estilo
+		select(name="style")
+			option(value="test")
+		label
+			| Teor Alcoólico
+		input(type="text", name="teorAlcool")
+		label
+			| Categoria
+		input(type="text", name="category")
+		label
+			| Ingredientes
+		label
+			| Descrição
+		textarea(name="description")
