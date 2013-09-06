@@ -3,12 +3,16 @@
  */
 
 var express = require('express');
+var mongoose = require('mongoose');
 var routes = require('./routes');
 var beer = require('./routes/beer');
+var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/mybeersio');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -27,12 +31,20 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
+// Beers
 app.get('/beers', beer.list);
 app.post('/beers/add', beer.add);
 app.get('/beers/add', beer.viewAdd);
 app.put('/beers/edit/:id', beer.edit);
-// app.get('/beers/edit/:id', beer.viewEdit);
 app.delete('/beers/remove/:id', beer.remove);
+
+// User
+app.get('/users', user.list);
+app.post('/users/add', user.add);
+app.get('/users/add', user.viewAdd);
+app.put('/users/edit/:id', user.edit);
+app.delete('/users/remove/:id', user.remove);
 
 // render views
 app.get('/beers/', beer.index);
